@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <title>Barcode Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Barcode Generator</h1>
+        <p>Select barcode type to create barcode</p>
+      </header>
+      <div class="selectbox">
+        <label for="barcode">Barcode Type:</label>
+        <select id="barcode" name="barcode">
+          <optgroup label="2-dimension barcode">
+            <option value="qrcode"selected>QR Code</option>
+          </optgroup>
+          <optgroup label="1-dimension barcode">
+            <option value="code128">Code128</option>
+            <option value="code39">Code39</option>
+            <option value="ean13">EAN-13</option>
+            <option value="upc">UPC</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="rotatebox">
+        <label for="rotatebox">Rotation:</label>
+          <input type="radio" name="degree" id="zero" value="0" checked="checked">
+          <label for="zero">0°</label>
+          <input type="radio" name="degree" id="ninty" value="90">
+          <label for="ninty">90°</label>
+          <input type="radio" name="degree" id="eighteen" value="180">
+          <label for="eighteen">180°</label>
+          <input type="radio" name="degree" id="twentyseven" value="270">
+          <label for="twentyseven">270°</label>
+      </div>
+      <div class="scalebox">
+        <label for="scalebox">Scale (width*height):</label>
+        <input type="text" id="sc_width" name="sc_width" value="200" size="4">
+        <input type="text" id="sc_height" name="sc_height" value="200" size="4">
+      </div>
+      <div class="color-picker">
+        <label for="color-picker">Color:</label>
+        <input type="color" id="color_pk">
+      </div>
+      <div class="form">
+        <input type="text" spellcheck="false" placeholder="Enter text or url">
+        <button>Generate Barcode</button>
+      </div>
+      <div class="barcode">
+        <img src="" alt="barcode">
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>
