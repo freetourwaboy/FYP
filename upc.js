@@ -26,26 +26,26 @@ function generateUPC(code) {
     const leftHand = fullcode.substring(0, 6);
     const rightHand = fullcode.substring(6, 12);
     // Generate the barcode
-    const barcode = generateBarcode(leftHand, rightHand);
-  
+    const barcode = generateBarcodeUPC(leftHand, rightHand);
+    console.log(barcode);
     return barcode;
   }
 
 
-  function generateBarcode(leftHand, rightHand) {
+  function generateBarcodeUPC(leftHand, rightHand) {
     // Start the barcode with the guard bars
     let barcode = '101';
   
     // Add the left-hand digits to the barcode
     for (let i = 0; i < leftHand.length; i++) {
-      barcode += getLeftHandEncoding(leftHand[i]);
+      barcode += getLeftHandEncodingupc(leftHand[i]);
     }
     // Add the middle guard bars
     barcode += '01010';
   
     // Add the right-hand digits to the barcode
     for (let i = 0; i < rightHand.length; i++) {
-        barcode += getRightHandEncoding(rightHand[i]);
+        barcode += getRightHandEncodingupc(rightHand[i]);
       }
   
     // Add the right guard bars and stop character
@@ -54,7 +54,7 @@ function generateUPC(code) {
     return barcode;
   }
 
-  function getRightHandEncoding(digit) {
+  function getRightHandEncodingupc(digit) {
     switch (digit) {
         case "0":
         return "1110010";
@@ -81,7 +81,7 @@ function generateUPC(code) {
     }
   }
 
-  function getLeftHandEncoding(digit) {
+  function getLeftHandEncodingupc(digit) {
     switch (digit) {
         case "0":
         return "0001101";

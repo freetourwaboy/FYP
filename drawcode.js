@@ -29,7 +29,6 @@ function drawcode(input){
       context.font = "18px Verdana";
       
       //inputcontext.fillText(input, 100, 100);
-      console.log(canvas.width);
       context.fillText(document.getElementById('input-box').value, canvas.width / 2 - context.measureText(document.getElementById('input-box').value).width / 2, barHeight+30);
       
       document.getElementById('error').textContent='';

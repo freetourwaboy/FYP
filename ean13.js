@@ -10,7 +10,6 @@ function generateEAN13(code) {
     var checkdigit = 0;
     else 
     var checkdigit=10-remainder;
-    
 
 
     // Add the check digit to the end of the code
@@ -20,8 +19,7 @@ function generateEAN13(code) {
     const leftHand = fullcode.substring(0, 7);
     const rightHand = fullcode.substring(7, 13);
     // Generate the barcode
-    const barcode = generateBarcode(leftHand, rightHand);
-  
+    const barcode = generateBarcode13(leftHand, rightHand);
     return barcode;
   }
 
@@ -49,12 +47,12 @@ function generateEAN13(code) {
     case "8":
         return oddeven = [1,0,1,0,0,1];
     case "9":
-        return oddeven = [1,0,1,0,0,1];
+        return oddeven = [1,0,0,1,0,1];
 }
 return oddeven;
   }
 
-  function generateBarcode(leftHand, rightHand) {
+  function generateBarcode13(leftHand, rightHand) {
     var oddeven = checkleftoddoreven(leftHand);
     // Start the barcode with the guard bars
     let barcode = '101';
@@ -62,6 +60,7 @@ return oddeven;
     // Add the left-hand digits to the barcode
     for (let i = 1; i < leftHand.length; i++) {
       barcode += getLeftHandEncoding(oddeven[i-1],leftHand[i]);
+      
     }
     // Add the middle guard bars
     barcode += '01010';
@@ -73,7 +72,7 @@ return oddeven;
   
     // Add the right guard bars and stop character
     barcode += '101';
-  
+    console.log(barcode);
     return barcode;
   }
 
