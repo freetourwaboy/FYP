@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8">  
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://github.com/eligrey/canvas-toBlob.js/blob/master/canvas-toBlob.js"></script>
     <title>Barcode Generator</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +48,8 @@
       <div class="color-picker">
         <label for="color-picker">Color:</label>
         <input type="color" id="color_pk">
+        <label for="bgcolor_pk">Background:</label>
+        <input type="color" id="bgcolor_pk" value="#FFFFFF">
       </div>
       <div class="form">
         <input type="text" spellcheck="false" placeholder="Enter text or url">
@@ -54,6 +57,12 @@
       </div>
       <div class="barcode">
         <img src="" alt="barcode">
+      </div>
+      <div class="downloader">
+        <p id="download_sentence" style="display: none;">Download the barcode image as: </p>
+        <a href="#" id="download-png" style="display: none;">PNG</a>
+        <span id="download_span1" style="display: none;">, </span>
+        <a href="#" id="download-jpeg" style="display: none;">JPEG</a>
       </div>
     </div>
 

@@ -19,7 +19,7 @@ body{
   background: #3498DB;
 }
 .wrapper{
-  height: 355px;
+  height: 360px;
   width: 410px;
   background: #fff;
   border-radius: 7px;
@@ -61,6 +61,8 @@ header p{
 }
 .color-picker input{
   vertical-align: middle;
+  margin-right: 15px;
+  margin-top: 5px;
 }
 .wrapper .form{
   margin: 10px 0 25px;
@@ -109,6 +111,9 @@ header p{
 .barcode img{
   width: 170px;
 }
+.downloader p{
+  margin-right: 5px;
+}
 
 @media (max-width: 430px){
   .wrapper{
@@ -142,6 +147,21 @@ header p{
   cursor: pointer;
 }
 #color_pk::-moz-color-swatch {
+  border-radius: 15px;
+  border: none;
+}
+
+#bgcolor_pk {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 70px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#bgcolor_pk::-moz-color-swatch {
   border-radius: 15px;
   border: none;
 }
