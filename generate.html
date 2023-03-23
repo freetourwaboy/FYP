@@ -52,23 +52,41 @@
         var selected = option.value;
         const code = document.getElementById("input-box").value;
         var binary='';
+        var fullcode=code;
+        const obj = {
+            type: 'EAN13',
+            barWidth: 2,
+            barHeight: 80,
+            textColor: '#f00',
+            fontSize: 18,
+            fontFamily: 'Verdana',
+            padding: 10,
+            paddingTop: 0.2,
+        };
         if (selected=='ean13')
         {
-            binary=generateEAN13(code);
+          obj.type = "ean13";
+          var ean =generateEAN13(code);
+          binary = ean.barcode;
+          fullcode = ean.fullcode;
         }
         else if (selected=='upc')
         {
+          obj.type = "upc";
           binary=generateUPC(code);
         }
         else if (selected=='code39')
         {
+          obj.type = "code39";
           binary=generateCode39(code);
         }
         else if (selected=='code128')
         {
+          obj.type = "code128";
           binary=generateCode128(code);
         }
-        drawcode(binary);
+        
+        drawBarcode(binary, fullcode, obj);
       }
       </script>
 

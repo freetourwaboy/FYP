@@ -20,7 +20,7 @@ function generateEAN13(code) {
     const rightHand = fullcode.substring(7, 13);
     // Generate the barcode
     const barcode = generateBarcode13(leftHand, rightHand);
-    return barcode;
+    return {barcode, fullcode};
   }
 
   function checkleftoddoreven(leftHand)
