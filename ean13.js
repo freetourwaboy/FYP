@@ -159,18 +159,25 @@ else if (oddoreven==0){
   function checkerrorEAN13(code){
     let error = document.getElementById('error');
     // Ensure that the code is 12 digits long
-    if (code.length != 12) {
-      error.textContent = "The code must be 12 digits long.";
 
-     throw new Error('The code must be 12 digits long.');
-   }
-     for (let i=0;i<code.length;i++)
-     {
-       if (code[i]>'9' || code[i]<'0')
-       {
-        error.textContent = "The input must be digits.";
+    for (let i=0;i<code.length;i++)
+    {
+      if ((code[i]>'9' || code[i]<'0')&&code.length!=12)
+      {
+       error.textContent = "The input must be digits and 12 digits long.";
 
-         throw new Error('The input must be digits.');
-       }
+        throw new Error('The input must be digits and 12 digits long.');
+      }
+      else if ((code[i]>'9' || code[i]<'0'))
+      {
+       error.textContent = "The input must be digits.";
+
+        throw new Error('The input must be digits.');
+      }
+      if (code.length != 12) {
+        error.textContent = "The code must be 12 digits long.";
+  
+       throw new Error('The code must be 12 digits long.');
      }
+    }    
    }

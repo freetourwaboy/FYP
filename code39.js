@@ -105,6 +105,7 @@ function generateCode39(code) {
   barcode += "100101101101";
   console.log(barcode);
   return barcode;
+  //return {barcode, fullcode};
 }
 
 function checkerrorCode39(code){
@@ -119,9 +120,8 @@ function checkerrorCode39(code){
     }
   }
 
-  // Uncomment the following lines if you want to enforce the 20-character limit
-  // if (code.length > 20) {
-  //   error.textContent = "The code must be less than 20 digits long.";
-  //   throw new Error('The code must be less than 20 digits long.');
-  // }
+  if (code.length > 15) {
+    error.textContent = "The code must no more than 15 digits long.";
+    throw new Error('The code must no more than 15 digits long.');
+  }
 }
