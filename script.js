@@ -160,8 +160,8 @@ function generate(type, value) {
         textColor: '#f00',
         fontSize: 18,
         fontFamily: 'Verdana',
-        padding: 10,
-        paddingTop: 0.2,
+        padding: 50,
+        paddingTop: 50,
     };
     if (selected=='ean13')
     {

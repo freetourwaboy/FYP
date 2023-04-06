@@ -7,18 +7,22 @@ const obj = {
   fontSize: 18,
   fontFamily: 'Verdana',
   padding: 10,
-  paddingTop: 0.2,
+  paddingTop: 100,
 };
 
 function drawBarcode(binary, text, obj) {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext('2d');
-  let x = obj.padding * obj.barWidth;
+  var x = obj.padding ;
   const init_x = x;
-  let y = obj.paddingTop * obj.barHeight;
+  var y = obj.paddingTop;
   const init_y = y;
+  context.canvas.height = 200;
+  context.canvas.width = 400;
   const canvasHeight = context.canvas.height;
-  const halfBarHeight = obj.barHeight / 2;
+  const canvasWidth = context.canvas.width;
+  console.log("canvasHeight : " + canvasHeight);
+  console.log("canvasWeight : " + canvasWidth);
 
   // Set the background color to white
   context.fillStyle = '#fff';
@@ -47,14 +51,15 @@ function drawBarcode(binary, text, obj) {
   // Add right padding
   x += obj.padding * obj.barWidth;
 
+  context.fillStyle = obj.textColor || '#000';
+  context.font = `${obj.fontSize || 12}px ${obj.fontFamily || 'Arial'}`;
   if (text){
     if(obj.type=="ean13"){
       let t1 = text.substring(0,1);
       let t2 = text.substring(1, 6);
       let t3 = text.substring(7);
-      context.fillStyle = obj.textColor || '#000';
-      context.font = `${obj.fontSize || 12}px ${obj.fontFamily || 'Arial'}`;
-      context.fillText(t1, obj.padding * 1.2 , y + obj.barHeight + (obj.fontSize || 12) + 5);
+      
+      context.fillText(t1, init_x-obj.barWidth*3 , y + obj.barHeight + (obj.fontSize || 12) + 5);
       context.fillText(t2, init_x+obj.barWidth*26 , y + obj.barHeight + (obj.fontSize || 12) + 5);
       context.fillText(t3, init_x+obj.barWidth*70 , y + obj.barHeight + (obj.fontSize || 12) + 5);
     }else if(obj.type=="upc"){
@@ -62,16 +67,14 @@ function drawBarcode(binary, text, obj) {
       let t2 = text.substring(1, 6);
       let t3 = text.substring(6, 11);
       let t4 = text.substring(11);
-      context.fillStyle = obj.textColor || '#000';
-      context.font = `${obj.fontSize || 12}px ${obj.fontFamily || 'Arial'}`;
+      
       context.fillText(t1, init_x-obj.barWidth*3 , y + obj.barHeight + (obj.fontSize || 12) + 5);
       context.fillText(t2, init_x+obj.barWidth*29 , y + obj.barHeight + (obj.fontSize || 12) + 5);
       context.fillText(t3, init_x+obj.barWidth*65 , y + obj.barHeight + (obj.fontSize || 12) + 5);
       context.fillText(t4, init_x+obj.barWidth*98 , y + obj.barHeight + (obj.fontSize || 12) + 5);
     }else{
-      context.fillStyle = obj.textColor || '#000';
-      context.font = `${obj.fontSize || 12}px ${obj.fontFamily || 'Arial'}`;
-      context.fillText(text, obj.padding + (binary.length / 2) * obj.barWidth, y + obj.barHeight + (obj.fontSize || 12) + 5);
+      
+      context.fillText(text, (x-init_x)/2, y + obj.barHeight + (obj.fontSize || 12) + 5);
     }
   }
   return canvas;
