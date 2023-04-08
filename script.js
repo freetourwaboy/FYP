@@ -3,7 +3,7 @@ bcInput = wrapper.querySelector(".form input"),
 generateBtn = wrapper.querySelector(".form button"),
 bcImg = wrapper.querySelector(".barcode img");
 let preValue; let preType;let checkedValue;let scwidth = 200;let scheight = 200;
-var mycanvas = document.createElement("canvas");let color;let bgcolor;
+var mycanvas = document.createElement("canvas");let color;let textcolor;
 
 generateBtn.addEventListener("click", () => {
     let bcValue = bcInput.value.trim();     //Taking Input
@@ -16,10 +16,10 @@ generateBtn.addEventListener("click", () => {
     var width = document.getElementById('sc_width').value;
     var height = document.getElementById('sc_height').value;
 
-    var color_input = document.getElementById('color_pk').value.substring(1);   //coloring
+    var color_input = document.getElementById('color_pk').value.substring(1);   //Coloring
     color = color_input;
-    var bgcolor_input = document.getElementById('bgcolor_pk').value.substring(1);
-    bgcolor = bgcolor_input;
+    var textcolor_input = document.getElementById('textcolor_pk').value.substring(1);
+    textcolor = textcolor_input;
 
     var sentence = document.getElementById('download_sentence');
     var png_link = document.getElementById('download-png');
@@ -29,32 +29,32 @@ generateBtn.addEventListener("click", () => {
     preType = type;
 
     document.getElementById("color_pk").onchange = function() {
-        color_input = this.value.substring(1);
+        color_input = this.value;
         color = color_input;
         //console.log(color_input); //debug
       }
 
-    document.getElementById("bgcolor_pk").onchange = function() {
-        bgcolor_input = this.value.substring(1);
-        bgcolor = bgcolor_input;
-        //console.log(color_input);
+    document.getElementById("textcolor_pk").onchange = function() {
+        textcolor_input = this.value;
+        textcolor = textcolor_input;
+        //console.log(textcolor_input);
       }
 
     switch (preType.value) {    //Barcode Generation
         case 'qrcode':
-            bcImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${bcValue}&color=${color_input}&bgcolor=${bgcolor_input}`;
+            bcImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${bcValue}&color=${color_input}&bgcolor=${textcolor_input}`;
             break;
         case 'code128':
-            bcImg.src = generate(preType.value, bcValue);
+            bcImg.src = generate(preType.value, bcValue, color_input, textcolor_input);
             break;
         case 'code39':
-            bcImg.src = generate(preType.value, bcValue);
+            bcImg.src = generate(preType.value, bcValue, color_input, textcolor_input);
             break;
         case 'ean13':
-            bcImg.src = generate(preType.value, bcValue);
+            bcImg.src = generate(preType.value, bcValue, color_input, textcolor_input);
             break;
         case 'upc':
-            bcImg.src = generate(preType.value, bcValue);
+            bcImg.src = generate(preType.value, bcValue, color_input, textcolor_input);
             break;
     }
 
@@ -138,7 +138,7 @@ function downloadpngBarcode() {
 function downloadjpegBarcode() {
     var dataURL;
     if (preType.value == 'qrcode'){
-        dataURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${preValue}&color=${color}&bgcolor=${bgcolor}&format=jpeg`;
+        dataURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${preValue}&color=${color}&bgcolor=${textcolor}&format=jpeg`;
     } else {
         dataURL = mycanvas.toDataURL("image/jpeg");
     }
@@ -148,7 +148,7 @@ function downloadjpegBarcode() {
     jpegLink.download = 'barcode.jpg';
 }
   
-function generate(type, value) {
+function generate(type, value, color, tcolor) {
     var selected = type;  //Barcode type
     const code = value; // input content
     var binary='';
@@ -187,7 +187,12 @@ function generate(type, value) {
       obj.type = "code128";
       binary= generateCode128(code);
     }
-    mycanvas = drawBarcode(binary, fullcode, obj);
+    var color_input = '#' + color;
+
+    var tcolor_input = '#' + tcolor;
+    obj.textColor = tcolor_input;
+
+    mycanvas = drawBarcode(binary, fullcode, obj, color_input);
     //console.log(mycanvas);
     return mycanvas.toDataURL("image/png");
 }  

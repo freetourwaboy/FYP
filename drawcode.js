@@ -10,13 +10,14 @@ const obj = {
   paddingTop: 100,
 };
 
-function drawBarcode(binary, text, obj) {
+function drawBarcode(binary, text, obj, color) {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext('2d');
   var x = obj.padding ;
   const init_x = x;
   var y = obj.paddingTop;
   const init_y = y;
+  obj.barColor = color;
   //context.canvas.height = 300;
   //context.canvas.width = 600;
   const canvasHeight = context.canvas.height;
