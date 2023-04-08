@@ -17,8 +17,8 @@ function drawBarcode(binary, text, obj) {
   const init_x = x;
   var y = obj.paddingTop;
   const init_y = y;
-  context.canvas.height = 200;
-  context.canvas.width = 400;
+  //context.canvas.height = 300;
+  //context.canvas.width = 600;
   const canvasHeight = context.canvas.height;
   const canvasWidth = context.canvas.width;
   console.log("canvasHeight : " + canvasHeight);
@@ -56,7 +56,7 @@ function drawBarcode(binary, text, obj) {
   if (text){
     if(obj.type=="ean13"){
       let t1 = text.substring(0,1);
-      let t2 = text.substring(1, 6);
+      let t2 = text.substring(1, 7);
       let t3 = text.substring(7);
       
       context.fillText(t1, init_x-obj.barWidth*3 , y + obj.barHeight + (obj.fontSize || 12) + 5);
