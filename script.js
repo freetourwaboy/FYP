@@ -196,4 +196,27 @@ function generate(type, value, color, tcolor) {
     //console.log(mycanvas);
     return mycanvas.toDataURL("image/png");
 }  
+
+function formplaceholder(){
+    var type = document.getElementById('barcode').value;
+    var form_textplace = document.getElementById('form_text');
+
+    switch (type) {
+        case 'qrcode':
+            form_textplace.placeholder = 'Enter text or url';
+            break;
+        case 'code128':
+            form_textplace.placeholder = 'Enter digit, capital letters content';
+            break;
+        case 'code39':
+            form_textplace.placeholder = 'Enter digit, capital letters content';
+            break;
+        case 'ean13':
+            form_textplace.placeholder = 'Please enter 12 digit content';
+            break;
+        case 'upc':
+            form_textplace.placeholder = 'Please enter 11 digit content';
+            break;
+    }
+}
   

@@ -22,7 +22,7 @@
       </header>
       <div class="selectbox">
         <label for="barcode">Barcode Type:</label>
-        <select id="barcode" name="barcode">
+        <select id="barcode" name="barcode" onchange="formplaceholder()">
           <optgroup label="2-dimension barcode">
             <option value="qrcode"selected>QR Code</option>
           </optgroup>
@@ -57,7 +57,7 @@
         <input type="color" id="textcolor_pk" value="#FF0000">
       </div>
       <div class="form">
-        <input type="text" spellcheck="false" placeholder="Enter text or url">
+        <input type="text" id="form_text" spellcheck="false" placeholder="Enter text or url">
         <button>Generate Barcode</button>
       </div>
       <div class="barcode">
