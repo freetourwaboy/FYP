@@ -42,7 +42,8 @@ generateBtn.addEventListener("click", () => {
 
     switch (preType.value) {    //Barcode Generation
         case 'qrcode':
-            bcImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${bcValue}&color=${color_input}&bgcolor=${textcolor_input}`;
+            //bcImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${bcValue}&color=${color_input}&bgcolor=${textcolor_input}`;
+            bcImg.src = QRCode.generatePNG(bcValue, color_input);
             break;
         case 'code128':
             bcImg.src = generate(preType.value, bcValue, color_input, textcolor_input);
