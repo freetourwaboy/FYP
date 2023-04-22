@@ -2,7 +2,7 @@ const wrapper = document.querySelector(".wrapper"),
 bcInput = wrapper.querySelector(".form input"),
 generateBtn = wrapper.querySelector(".form button"),
 bcImg = wrapper.querySelector(".barcode img");
-let preValue; let preType;let checkedValue;let scwidth = 200;let scheight = 200;
+let preValue; let preType;let checkedValue;var scwidth = 200;var scheight = 200;var rtdegree = 0;
 var mycanvas = document.createElement("canvas");let color;let textcolor;
 
 generateBtn.addEventListener("click", () => {
@@ -43,7 +43,7 @@ generateBtn.addEventListener("click", () => {
     switch (preType.value) {    //Barcode Generation
         case 'qrcode':
             //bcImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${bcValue}&color=${color_input}&bgcolor=${textcolor_input}`;
-            bcImg.src = QRCode.generatePNG(bcValue, color_input);
+            bcImg.src = generateqrcode(bcValue, color_input);
             break;
         case 'code128':
             bcImg.src = generate(preType.value, bcValue, color_input, textcolor_input);
@@ -66,6 +66,7 @@ generateBtn.addEventListener("click", () => {
     bcImg.style.height = scheight + 'px';
 
     if (checkedValue.value !== null) {  // Rotation
+        rtdegree = checkedValue;
         document.querySelector(".barcode img").style.transform = `rotate(${checkedValue.value}deg)`;
     }
 
@@ -86,7 +87,7 @@ bcInput.addEventListener("keyup", () => {
     if(!bcInput.value.trim()) {
         wrapper.classList.remove("active");
         preValue = "";preType = "";checkedValue = "";
-        scwidth = 200; scheight = 200;
+        scwidth = 200; scheight = 200; rtdegree = 0;
     }
 });
 
@@ -127,8 +128,27 @@ bcInput.addEventListener("keyup", () => {
 // }
 
 function downloadpngBarcode() {
-    // Convert the barcode div contents to a data URL
-    var dataURL = bcImg.src;
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Set desired dimensions for the image
+    const newWidth = scwidth;
+    const newHeight = scheight;
+
+    // Set the canvas dimensions to the desired dimensions
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+
+    // Apply rotation to the canvas context
+    ctx.translate(newWidth / 2, newHeight / 2);
+    ctx.rotate(rtdegree.value * Math.PI / 180);
+    ctx.translate(-newWidth / 2, -newHeight / 2);
+
+    // Draw the resized image onto the canvas
+    ctx.drawImage(bcImg, 0, 0, newWidth, newHeight);
+
+    // Convert canvas element to data URL
+    const dataURL = canvas.toDataURL("image/png");
     
     // Create download links with the data URL
     var pngLink = document.getElementById('download-png');
@@ -137,12 +157,27 @@ function downloadpngBarcode() {
 }
 
 function downloadjpegBarcode() {
-    var dataURL;
-    if (preType.value == 'qrcode'){
-        dataURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${preValue}&color=${color}&bgcolor=${textcolor}&format=jpeg`;
-    } else {
-        dataURL = mycanvas.toDataURL("image/jpeg");
-    }
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Set desired dimensions for the image
+    const newWidth = scwidth;
+    const newHeight = scheight;
+
+    // Set the canvas dimensions to the desired dimensions
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+
+    // Apply rotation to the canvas context
+    ctx.translate(newWidth / 2, newHeight / 2);
+    ctx.rotate(rtdegree.value * Math.PI / 180);
+    ctx.translate(-newWidth / 2, -newHeight / 2);
+
+    // Draw the resized image onto the canvas
+    ctx.drawImage(bcImg, 0, 0, newWidth, newHeight);
+
+    // Convert canvas element to data URL
+    const dataURL = canvas.toDataURL("image/jpeg");
 
     var jpegLink = document.getElementById('download-jpeg');
     jpegLink.href = dataURL;
@@ -196,7 +231,13 @@ function generate(type, value, color, tcolor) {
     mycanvas = drawBarcode(binary, fullcode, obj, color_input);
     //console.log(mycanvas);
     return mycanvas.toDataURL("image/png");
-}  
+}
+
+function generateqrcode(value, color) {
+    mycanvas = QRCode.generatePNG(value, color);
+
+    return mycanvas.toDataURL("image/png");
+}
 
 function formplaceholder(){
     var type = document.getElementById('barcode').value;

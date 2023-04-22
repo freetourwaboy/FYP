@@ -507,7 +507,7 @@
         }
       }
       //context.fillText('evaluation: ' + evaluatematrix(matrix), 10, 10);
-      return canvas.toDataURL();
+      return canvas;
     }
 
 	};
