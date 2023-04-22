@@ -196,8 +196,9 @@ function generate(type, value, color, tcolor) {
         textColor: '#f00',
         fontSize: 18,
         fontFamily: 'Verdana',
-        padding: 50,
-        paddingTop: 50,
+        padding: 20,
+        paddingTop: 40,
+        barcodeAspectRatio: 2.5,
     };
     if (selected=='ean13')
     {
