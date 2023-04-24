@@ -8,20 +8,28 @@ var mycanvas = document.createElement("canvas");let color;let textcolor;
 generateBtn.addEventListener("click", () => {
     let bcValue = bcInput.value.trim();     //Taking Input
     if(!bcValue) return; //Return when input is empty
+    var width = document.getElementById('sc_width').value;
+    var height = document.getElementById('sc_height').value;
+
+    if (width >= 200 && width <= 400 && height >= 200 && height <= 400) { // Scaling
+        scwidth = width;
+        scheight = height;
+    }else{
+        alert("Invalid Input. Please input in the range 200-400 (inclusive)");
+        return;
+    }
+
     preValue = bcValue;
     generateBtn.innerText = "Generating Barcode...";
     let type = document.getElementById('barcode');
     checkedValue = document.querySelector('input[name="degree"]:checked');
-    
-    var width = document.getElementById('sc_width').value;
-    var height = document.getElementById('sc_height').value;
 
     var color_input = document.getElementById('color_pk').value.substring(1);   //Coloring
     color = color_input;
     var textcolor_input = document.getElementById('textcolor_pk').value.substring(1);
     textcolor = textcolor_input;
 
-    var sentence = document.getElementById('download_sentence');
+    var sentence = document.getElementById('download_sentence');    //Downloading
     var png_link = document.getElementById('download-png');
     var span1 = document.getElementById('download_span1');
     var jpeg_link = document.getElementById('download-jpeg');
@@ -58,9 +66,6 @@ generateBtn.addEventListener("click", () => {
             bcImg.src = generate(preType.value, bcValue, color_input, textcolor_input);
             break;
     }
-
-    scwidth = (width === '') ? 200 : width;     // Scaling
-    scheight = (height === '') ? 200 : height;
 
     bcImg.style.width = scwidth + 'px';     // Scaling
     bcImg.style.height = scheight + 'px';
