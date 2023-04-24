@@ -14,10 +14,9 @@ function check_start_type(code)
     return 'C';
 }
 //check error
+//ensure there is less than 15 characters and no invalid input.
 function check_start_error(code)
 {
-  
- 
     for (let i=0;i<code.length;i++)
     {
         if (code[i]<" " || code[i]>"_")
@@ -26,8 +25,8 @@ function check_start_error(code)
         throw new Error('invalid input');}
     }
     if (code.length > 15) {
-      alert('The code must no more than 15 digits long.');
-      throw new Error('The code must no more than 15 digits long.');
+      alert('The code must no more than 15 characters long.');
+      throw new Error('The code must no more than 15 characters long.');
     }
     
 }

@@ -157,7 +157,7 @@ else if (oddoreven==0){
     }
   }}
   function checkerrorEAN13(code){
-    // Ensure that the code is 12 digits long
+    // Ensure that the code is 12 digits long and all digits.
 
     for (let i=0;i<code.length;i++)
     {

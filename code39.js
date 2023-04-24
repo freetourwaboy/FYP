@@ -108,6 +108,9 @@ function generateCode39(code) {
   //return {barcode, fullcode};
 }
 
+
+//check error
+//ensure there is less than 15 characters and no invalid input.
 function checkerrorCode39(code){
   for (let i=0;i<code.length;i++)
   {
@@ -120,7 +123,7 @@ function checkerrorCode39(code){
   }
 
   if (code.length > 15) {
-    alert('The code must no more than 15 digits long.');
-    throw new Error('The code must no more than 15 digits long.');
+    alert('The code must no more than 15 characters long.');
+    throw new Error('The code must no more than 15 characters long.');
   }
 }

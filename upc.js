@@ -51,7 +51,7 @@ function generateUPC(code) {
     // Add the right guard bars and stop character
     barcode += '101';
   return barcode;
-    //return {barcode, fullcode};
+
   }
 
   function getRightHandEncodingupc(digit) {
@@ -108,8 +108,7 @@ function generateUPC(code) {
     }
     }
     function checkerrorUPC(code){
-      let error = document.getElementById('error');
-      // Ensure that the code is 11 digits long
+      // Ensure that the code is 11 digits long and all digits.
   
       for (let i=0;i<code.length;i++)
     {
