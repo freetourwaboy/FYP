@@ -151,7 +151,7 @@ header p{
   border: none;
 }
 
-#bgcolor_pk {
+#textcolor_pk {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -161,7 +161,7 @@ header p{
   border: none;
   cursor: pointer;
 }
-#bgcolor_pk::-moz-color-swatch {
+#textcolor_pk::-moz-color-swatch {
   border-radius: 15px;
   border: none;
 }

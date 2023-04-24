@@ -109,19 +109,18 @@ function generateCode39(code) {
 }
 
 function checkerrorCode39(code){
-  let error = document.getElementById('error');
   for (let i=0;i<code.length;i++)
   {
     //uppercase letters (A-Z), numbers (0-9), and a limited set of special characters (-, ., $, /, +, %, and space).
     if (!((code[i]>='0' && code[i]<='9') || (code[i]>='A' && code[i]<='Z') || code[i]=='-' || code[i]=='.'|| code[i]=='$'|| code[i]=='/'|| code[i]=='+'|| code[i]=='%'|| code[i]==' '))
     {
-      error.textContent = "invalid input.";
+      alert('invalid input');
       throw new Error('invalid input');
     }
   }
 
   if (code.length > 15) {
-    error.textContent = "The code must no more than 15 digits long.";
+    alert('The code must no more than 15 digits long.');
     throw new Error('The code must no more than 15 digits long.');
   }
 }

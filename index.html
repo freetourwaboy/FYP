@@ -10,6 +10,7 @@
     <script src="code39.js"></script>
     <script src="code128.js"></script>
     <script src="drawcode.js"></script>
+    <script src="qrcode.js"></script>
     <title>Barcode Generator</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +23,7 @@
       </header>
       <div class="selectbox">
         <label for="barcode">Barcode Type:</label>
-        <select id="barcode" name="barcode">
+        <select id="barcode" name="barcode" onchange="formplaceholder()">
           <optgroup label="2-dimension barcode">
             <option value="qrcode"selected>QR Code</option>
           </optgroup>
@@ -53,11 +54,11 @@
       <div class="color-picker">
         <label for="color-picker">Color:</label>
         <input type="color" id="color_pk">
-        <label for="bgcolor_pk">Background:</label>
-        <input type="color" id="bgcolor_pk" value="#FFFFFF">
+        <label for="textcolor_pk">Text:</label>
+        <input type="color" id="textcolor_pk" value="#FF0000">
       </div>
       <div class="form">
-        <input type="text" spellcheck="false" placeholder="Enter text or url">
+        <input type="text" id="form_text" spellcheck="false" placeholder="Enter text or url">
         <button>Generate Barcode</button>
       </div>
       <div class="barcode">

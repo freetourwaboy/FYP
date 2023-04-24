@@ -112,23 +112,23 @@ function generateUPC(code) {
       // Ensure that the code is 11 digits long
   
       for (let i=0;i<code.length;i++)
+    {
+
+      if ((code[i]>'9' || code[i]<'0')&&code.length!=11)
       {
-        if ((code[i]>'9' || code[i]<'0')&&code.length!=11)
-        {
-         error.textContent = "The input must be digits and 11 digits long.";
-  
-          throw new Error('The input must be digits and 11 digits long.');
-        }
-        else if ((code[i]>'9' || code[i]<'0'))
-        {
-         error.textContent = "The input must be digits.";
-  
-          throw new Error('The input must be digits.');
-        }
-        if (code.length != 11) {
-          error.textContent = "The code must be 11 digits long.";
-    
-         throw new Error('The code must be 11 digits long.');
-       }
-      }    
+       alert('The input must be digits and 11 digits long.');
+        throw new Error('The input must be digits and 11 digits long.');
+      }
+      else if ((code[i]>'9' || code[i]<'0'))
+      {
+        
+        alert('The input must be digits.');
+        throw new Error('The input must be digits.');
+      }
+    }  
+      if (code.length != 11) {
+        alert('The code must be 11 digits long.');
+       throw new Error('The code must be 11 digits long.');
+     }
+      
      }

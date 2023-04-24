@@ -15,13 +15,21 @@ function check_start_type(code)
 }
 //check error
 function check_start_error(code)
-{//let error = document.getElementById('error');
+{
+  
+ 
     for (let i=0;i<code.length;i++)
     {
         if (code[i]<" " || code[i]>"_")
-        {//error.textContent = "invalid input.";
+        {
+          alert('invalid input')
         throw new Error('invalid input');}
     }
+    if (code.length > 15) {
+      alert('The code must no more than 15 digits long.');
+      throw new Error('The code must no more than 15 digits long.');
+    }
+    
 }
 //find whether it change type or not
 function check_change(code,type,position)
@@ -1081,3 +1089,4 @@ function getCode128_CChar(number) {
           
       }
     }
+
