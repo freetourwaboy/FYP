@@ -27,7 +27,6 @@ function generateUPC(code) {
     const rightHand = fullcode.substring(6, 12);
     // Generate the barcode
     const barcode = generateBarcodeUPC(leftHand, rightHand);
-    console.log(barcode);
     return {barcode, fullcode};
   }
 

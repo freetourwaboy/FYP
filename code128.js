@@ -36,16 +36,14 @@ function check_change(code,type,position)
 
         if (!isNaN(code[position+1])&& !isNaN(code[position]))
         {
-            console.log(position,position+1,"C")
             return 'C';
         }
         else 
-        console.log(position,position+1,"A")
             return 'A';
  
 }
 
-console.log(generateCode128("23B056C"));
+
 
 function generateCode128(code) {
     let total = 0;
@@ -58,16 +56,13 @@ function generateCode128(code) {
         total += (total_pos*getCode128_AValuedec(code[0])+103);
         barcode += "11010000100";
         barcode += getCode128_AValuebin(code[0]);
-        console.log(i);
         i+=1;
         
-        // console.log("ok");
     }else if (check_start_type(code)=='C')
     {
         total += (total_pos*getCode128_CValuedec(code[0]+code[1])+105);
         barcode += "11010011100";
         barcode += getCode128_CValuebin(code[0]+code[1]);
-        console.log(i);
         i+=2;
     }
     total_pos++;
@@ -85,7 +80,6 @@ function generateCode128(code) {
             }
             else if (check_change(code,type,i)=="A")
             {
-                //console.log(code[i]);
                 barcode += getCode128_CValuebin("CodeA");
                 total += total_pos*getCode128_CValuedec("CodeA");
                 total_pos++;
@@ -100,10 +94,8 @@ function generateCode128(code) {
             total_pos++;
         } else if (type=="C")
         {
-            console.log(code[i]+code[i+1]);
             total += total_pos*getCode128_CValuedec(code[i]+code[i+1]);
             barcode += getCode128_CValuebin(code[i]+code[i+1]);
-            console.log(i);
             i+=2;
             total_pos++;
         }
@@ -866,12 +858,6 @@ function getCode128_CChar(number) {
       case 'CodeB': return '10111101110';
       case 'FNC4': return '11101011110';
       case 'FNC1': return '11110101110';
-      // case 'Start Code A': return '11010000100';
-      // case 'Start Code B': return '11010010000';
-      // case 'Start Code C': return '11010011100';
-      // case 'Stop': return '11000111010';
-      // case 'Reverse Stop': return '11010111000';
-      // case 'Stop pattern': return '1100011101011';
       default: return '';
     }
   }

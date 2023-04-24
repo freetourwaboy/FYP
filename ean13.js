@@ -72,7 +72,6 @@ return oddeven;
   
     // Add the right guard bars and stop character
     barcode += '101';
-    console.log(barcode);
     return barcode;
   }
 
