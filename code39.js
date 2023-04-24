@@ -103,9 +103,7 @@ function generateCode39(code) {
     barcode += "0"; // Add the inter-character gap
   }
   barcode += "100101101101";
-  console.log(barcode);
   return barcode;
-  //return {barcode, fullcode};
 }
 
 
