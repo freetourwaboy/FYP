@@ -39,18 +39,15 @@ generateBtn.addEventListener("click", () => {
     document.getElementById("color_pk").onchange = function() {
         color_input = this.value;
         color = color_input;
-        //console.log(color_input); //debug
       }
 
     document.getElementById("textcolor_pk").onchange = function() {
         textcolor_input = this.value;
         textcolor = textcolor_input;
-        //console.log(textcolor_input);
       }
 
     switch (preType.value) {    //Barcode Generation
         case 'qrcode':
-            //bcImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${bcValue}&color=${color_input}&bgcolor=${textcolor_input}`;
             bcImg.src = generateqrcode(bcValue, color_input);
             break;
         case 'code128':
@@ -95,42 +92,6 @@ bcInput.addEventListener("keyup", () => {
         scwidth = 600; scheight = 400; rtdegree = 0;
     }
 });
-
-// function generatecode128 (value) {
-//     var canvas = document.createElement("canvas");
-//     JsBarcode(canvas, value, {
-//         format: 'code128',
-//         displayValue: true,
-//     });
-//     return canvas.toDataURL("image/png");
-// }
-// function generatecode128 (value) {
-//     var canvas = document.createElement("canvas");
-//     JsBarcode(canvas, value, {
-//         format: 'code128',
-//         displayValue: true,
-//     });
-//     return canvas.toDataURL("image/png");
-// }
-// function generatecode39 (value) {
-//     var canvas = document.createElement("canvas");
-//     JsBarcode(canvas, value, {
-//         format: 'code39',
-//         displayValue: true,
-//     });
-//     return canvas.toDataURL("image/png");
-// }
-// function generateeatn13 (value) {
-//     var canvas = document.createElement("canvas");
-//     JsBarcode(canvas, value, {
-//         format: 'ean13',});
-//     return canvas.toDataURL("image/png");
-// }
-// function generateupc (value) {
-//     var canvas = document.createElement("canvas");
-//     JsBarcode(canvas, value, {format: "UPC"});
-//     return canvas.toDataURL("image/png");
-// }
 
 function downloadpngBarcode() {
     const canvas = document.createElement("canvas");
