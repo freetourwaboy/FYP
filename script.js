@@ -2,7 +2,7 @@ const wrapper = document.querySelector(".wrapper"),
 bcInput = wrapper.querySelector(".form input"),
 generateBtn = wrapper.querySelector(".form button"),
 bcImg = wrapper.querySelector(".barcode img");
-let preValue; let preType;let checkedValue;var scwidth = 200;var scheight = 200;var rtdegree = 0;
+let preValue; let preType;let checkedValue;var scwidth = 600;var scheight = 400;var rtdegree = 0;
 var mycanvas = document.createElement("canvas");let color;let textcolor;
 
 generateBtn.addEventListener("click", () => {
@@ -15,7 +15,7 @@ generateBtn.addEventListener("click", () => {
         scwidth = width;
         scheight = height;
     }else{
-        //alert("Invalid Input. Please input in the range 200-400 (inclusive)");
+        alert("Invalid Input. Please input in the range 200-800 (inclusive)");
         return;
     }
 
@@ -92,7 +92,7 @@ bcInput.addEventListener("keyup", () => {
     if(!bcInput.value.trim()) {
         wrapper.classList.remove("active");
         preValue = "";preType = "";checkedValue = "";
-        scwidth = 200; scheight = 200; rtdegree = 0;
+        scwidth = 600; scheight = 400; rtdegree = 0;
     }
 });
 
